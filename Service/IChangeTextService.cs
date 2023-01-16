@@ -2,7 +2,7 @@
 {
     public interface IChangeTextService
     {
-        public string HtmlToWhatsApp(string text);
+        string HtmlToWhatsApp(string text);
         public string WhatsAppToHtml(string text);
     }
 }
