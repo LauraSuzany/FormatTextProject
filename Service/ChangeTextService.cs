@@ -13,7 +13,7 @@ namespace FormatTextProject.Service
                 "<dfn>,<dfn>,<ins>,</ins>,<kbd>,</kbd>,<label>,</label>,<legend>,</legend>, " +
                 "<li>,</li>,<output>,</output>,<q>,</q>,<samp>,</samp>,<sub>,</sub>,<sup>, " +
                 "</sup>,<time>,</time>,<u>,</u>,<var>,</var>,<wbr>,</wbr>,<big>,</big>, " +
-                "<center>,</center>,<font>,</font>,<basefont>,</basefont>";
+                "<center>,</center>,<font>,</font>,<basefont>,</basefont>,<p>,</p>";
 
             List<string> newList = new List<string>();
             string markdown = Regex.Replace(text, "<b>", "*");//Negrito
@@ -24,8 +24,6 @@ namespace FormatTextProject.Service
             markdown = Regex.Replace(markdown, "</i>", "_");//itálico
             markdown = Regex.Replace(markdown, "<em>", "_");//itálico
             markdown = Regex.Replace(markdown, "</em>", "_");//itálico
-            markdown = Regex.Replace(markdown, "<p>", ""); //tirar a tag de paragrafo
-            markdown = Regex.Replace(markdown, "</p>", "");//tirar a tag de paragrafo
             markdown = Regex.Replace(markdown, "<s>", "~");//Strikethrough
             markdown = Regex.Replace(markdown, "</s>", "~"); //Strikethrough
             markdown = Regex.Replace(markdown, "<del>", "~"); //Strikethrough/Excluido
@@ -38,6 +36,8 @@ namespace FormatTextProject.Service
             markdown = Regex.Replace(markdown, "</pre>", "```");//Monospace
             markdown = Regex.Replace(markdown, "<tt>", "```");//Monospace
             markdown = Regex.Replace(markdown, "</tt>", "```");//Monospace
+            markdown = Regex.Replace(markdown, "<br>", "\n");
+            markdown = Regex.Replace(markdown, "</br>", "\n");
 
             htmlTagsText.Split(",").ToList().ForEach(x => listHtmlTagsText.Add(x));
             foreach (string tag in listHtmlTagsText)
